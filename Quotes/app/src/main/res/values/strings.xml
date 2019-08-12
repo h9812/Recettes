@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Quotes</string>
+
+    <string name="facebook_application_id">475605369948381</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb475605369948381</string>
+</resources>
