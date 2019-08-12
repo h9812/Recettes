@@ -1,93 +1,104 @@
 package com.d2h2.recettes.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 public class Recipe implements Serializable {
-    private int mId;
-    private String mName;
-    private String mDescription;
-    private int[] mIngredientIds;
-    private List<String> mIngredientAmounts;
-    private List<String> mDirections;
-    private int[] mTagIds;
-    private int mOwnerId;
-    private int mNumberOfLikes;
+    private int id;
+    private String name;
+    private String description;
+    private int[] ingredientIds;
+    private List<String> amounts;
+    private List<String> directions;
+    private int[] tagIds;
+    private int ownerId;
+    private int numberOfLikes;
 
-    public int getmId() {
-        return mId;
+    public int getId() {
+        return id;
     }
 
-    public void setmId(int mId) {
-        this.mId = mId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getmName() {
-        return mName;
+    public String getName() {
+        return name;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getmDescription() {
-        return mDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int[] getmIngredientIds() {
-        return mIngredientIds;
+    public int[] getIngredientIds() {
+        return ingredientIds;
     }
 
-    public void setmIngredientIds(int[] mIngredientIds) {
-        this.mIngredientIds = mIngredientIds;
+    public void setIngredientIds(int[] ingredientIds) {
+        this.ingredientIds = ingredientIds;
     }
 
-    public List<String> getmIngredientAmounts() {
-        return mIngredientAmounts;
+    public List<String> getAmounts() {
+        return amounts;
     }
 
-    public void setmIngredientAmounts(List<String> mIngredientAmounts) {
-        this.mIngredientAmounts = mIngredientAmounts;
+    public void setAmounts(List<String> amounts) {
+        this.amounts = amounts;
     }
 
-    public List<String> getmDirections() {
-        return mDirections;
+    public List<String> getDirections() {
+        return directions;
     }
 
-    public void setmDirections(List<String> mDirections) {
-        this.mDirections = mDirections;
+    public void setDirections(List<String> directions) {
+        this.directions = directions;
     }
 
-    public int[] getmTagIds() {
-        return mTagIds;
+    public int[] getTagIds() {
+        return tagIds;
     }
 
-    public void setmTagIds(int[] mTagIds) {
-        this.mTagIds = mTagIds;
+    public void setTagIds(int[] tagIds) {
+        this.tagIds = tagIds;
     }
 
-    public int getmOwnerId() {
-        return mOwnerId;
+    public int getOwnerId() {
+        return ownerId;
     }
 
-    public void setmOwnerId(int mOwnerId) {
-        this.mOwnerId = mOwnerId;
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public int getmNumberOfLikes() {
-        return mNumberOfLikes;
+    public int getNumberOfLikes() {
+        return numberOfLikes;
     }
 
-    public void setmNumberOfLikes(int mNumberOfLikes) {
-        this.mNumberOfLikes = mNumberOfLikes;
+    public void setNumberOfLikes(int numberOfLikes) {
+        this.numberOfLikes = numberOfLikes;
     }
 
     @Override
     public String toString() {
-        return mName;
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", ingredientIds=" + Arrays.toString(ingredientIds) +
+                ", amounts=" + amounts +
+                ", directions=" + directions +
+                ", tagIds=" + Arrays.toString(tagIds) +
+                ", ownerId=" + ownerId +
+                ", numberOfLikes=" + numberOfLikes +
+                '}';
     }
 }

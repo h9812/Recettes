@@ -3,27 +3,30 @@ package com.d2h2.recettes.model;
 import java.io.Serializable;
 
 public class Ingredient implements Serializable {
-    private int mId;
-    private String mName;
+    private int id;
+    private String name;
 
-    public int getmId() {
-        return mId;
+    public int getId() {
+        return id;
     }
 
-    public void setmId(int mId) {
-        this.mId = mId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getmName() {
-        return mName;
+    public String getName() {
+        return name;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return mName;
+        return "Ingredient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
