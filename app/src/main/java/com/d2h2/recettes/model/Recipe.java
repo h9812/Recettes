@@ -12,6 +12,7 @@ public class Recipe implements Serializable {
     private List<String> mDirections;
     private int[] mTagIds;
     private int mOwnerId;
+    private int mNumberOfLikes;
 
     public int getmId() {
         return mId;
@@ -75,6 +76,14 @@ public class Recipe implements Serializable {
 
     public void setmOwnerId(int mOwnerId) {
         this.mOwnerId = mOwnerId;
+    }
+
+    public int getmNumberOfLikes() {
+        return mNumberOfLikes;
+    }
+
+    public void setmNumberOfLikes(int mNumberOfLikes) {
+        this.mNumberOfLikes = mNumberOfLikes;
     }
 
     @Override
