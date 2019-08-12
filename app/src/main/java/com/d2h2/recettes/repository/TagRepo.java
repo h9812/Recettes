@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-class TagRepo {
+public class TagRepo {
 
     public interface EventListener {
         void onDataChange();

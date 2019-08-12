@@ -7,6 +7,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.d2h2.recettes.fragment.FragmentHome;
+import com.d2h2.recettes.fragment.FragmentProfile;
+import com.d2h2.recettes.fragment.FragmentSearch;
+import com.d2h2.recettes.fragment.FragmentSetting;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

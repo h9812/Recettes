@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-class IngredientRepo {
+public class IngredientRepo {
 
     public interface EventListener {
         void onDataChange();
