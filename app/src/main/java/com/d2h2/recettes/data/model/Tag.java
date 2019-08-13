@@ -1,4 +1,4 @@
-package com.d2h2.recettes.model;
+package com.d2h2.recettes.data.model;
 
 public class Tag {
     private int id;

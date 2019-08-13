@@ -1,19 +1,31 @@
-package com.d2h2.recettes.model;
+package com.d2h2.recettes.data.model;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 public class Recipe implements Serializable {
+    @SerializedName("id")
     private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("description")
     private String description;
-    private int[] ingredientIds;
+    @SerializedName("ingredientIds")
+    private String[] ingredientIds;
+    @SerializedName("amounts")
     private List<String> amounts;
+    @SerializedName("directions")
     private List<String> directions;
-    private int[] tagIds;
-    private int ownerId;
+    @SerializedName("tagIds")
+    private String[] tagIds;
+    @SerializedName("ownerId")
+    private String ownerId;
+    @SerializedName("numberOfLikes")
     private int numberOfLikes;
+
 
     public int getId() {
         return id;
@@ -39,12 +51,28 @@ public class Recipe implements Serializable {
         this.description = description;
     }
 
-    public int[] getIngredientIds() {
+    public String[] getIngredientIds() {
         return ingredientIds;
     }
 
-    public void setIngredientIds(int[] ingredientIds) {
+    public void setIngredientIds(String[] ingredientIds) {
         this.ingredientIds = ingredientIds;
+    }
+
+    public String[] getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String[] tagIds) {
+        this.tagIds = tagIds;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
     public List<String> getAmounts() {
@@ -61,22 +89,6 @@ public class Recipe implements Serializable {
 
     public void setDirections(List<String> directions) {
         this.directions = directions;
-    }
-
-    public int[] getTagIds() {
-        return tagIds;
-    }
-
-    public void setTagIds(int[] tagIds) {
-        this.tagIds = tagIds;
-    }
-
-    public int getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
     }
 
     public int getNumberOfLikes() {
