@@ -5,6 +5,7 @@ import android.app.Application;
 import com.d2h2.recettes.base.BaseApplication;
 import com.d2h2.recettes.di.module.ActivityBindingModule;
 import com.d2h2.recettes.di.module.ContextModule;
+import com.d2h2.recettes.di.module.ViewModelModule;
 
 import javax.inject.Singleton;
 
@@ -15,7 +16,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 import dagger.android.support.DaggerApplication;
 
 @Singleton
-@Component(modules = {ContextModule.class, AndroidSupportInjectionModule.class, ActivityBindingModule.class})
+@Component(modules = {ContextModule.class, AndroidSupportInjectionModule.class, ActivityBindingModule.class, ViewModelModule.class})
 public interface ApplicationComponent extends AndroidInjector<DaggerApplication> {
 
     void inject(BaseApplication application);

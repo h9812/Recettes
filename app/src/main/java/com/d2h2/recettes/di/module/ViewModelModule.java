@@ -13,7 +13,6 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
 
-@Singleton
 @Module
 public abstract class ViewModelModule {
 

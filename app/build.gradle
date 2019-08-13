@@ -17,11 +17,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility = '1.8'
+    }
 }
 
 def rxJavaVersion = "2.0.1"
 def butterKnifeVersion = '10.0.0'
-def daggerVersion = '2.13'
+def daggerVersion = '2.23'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
