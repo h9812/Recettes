@@ -1,4 +1,4 @@
-package com.d2h2.recettes;
+package com.d2h2.recettes.ui.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,6 +7,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.d2h2.recettes.R;
+import com.d2h2.recettes.ui.fragment.FragmentHome;
+import com.d2h2.recettes.ui.fragment.FragmentProfile;
+import com.d2h2.recettes.ui.fragment.FragmentSearch;
+import com.d2h2.recettes.ui.fragment.FragmentSetting;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

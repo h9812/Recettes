@@ -1,4 +1,4 @@
-package com.d2h2.recettes;
+package com.d2h2.recettes.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-public class FragmentProfile extends Fragment {
-    private TextView mTxtProfile;
+import com.d2h2.recettes.R;
+
+public class FragmentSetting extends Fragment {
+    private TextView mTxtSetting;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_setting, container, false);
     }
 
     @Override
@@ -25,10 +27,11 @@ public class FragmentProfile extends Fragment {
     }
 
     private void initView(View view) {
-        mTxtProfile = view.findViewById(R.id.txt_profile);
+        mTxtSetting = view.findViewById(R.id.txt_setting);
     }
 
     private void initAction() {
-        mTxtProfile.setText(R.string.title_profile);
+        mTxtSetting.setText(R.string.title_setting);
     }
+
 }
