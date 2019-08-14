@@ -22,8 +22,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     private RecipeSelectedListener recipeSelectedListener;
     private final List<Recipe> data;
 
-    public HomeAdapter(List<Recipe> data){
+    public HomeAdapter(List<Recipe> data, RecipeSelectedListener recipeSelectedListener){
         this.data = data;
+        this.recipeSelectedListener = recipeSelectedListener;
     }
 
     @NonNull

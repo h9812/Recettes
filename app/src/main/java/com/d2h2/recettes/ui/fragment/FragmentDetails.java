@@ -1,43 +1,43 @@
 package com.d2h2.recettes.ui.fragment;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.d2h2.recettes.ui.adapter.HomeAdapter;
 import com.d2h2.recettes.R;
-import com.d2h2.recettes.data.Repo.RecipesRepo;
+import com.d2h2.recettes.data.Repo.RecipeRepo;
 import com.d2h2.recettes.data.Repository;
-import com.d2h2.recettes.ui.fragment.listener.RecipeSelectedListener;
 import com.d2h2.recettes.data.model.Recipe;
 import com.d2h2.recettes.util.AppUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class FragmentHome extends Fragment implements RecipeSelectedListener {
+public class FragmentDetails extends Fragment {
 
-    @BindView(R.id.rv_recipes)
-    RecyclerView recyclerView;
+    @BindView(R.id.tv_recipe_name)
+    TextView recipeNameTextView;
+    @BindView(R.id.tv_recipe_description) TextView recipeDescriptionTextView;
+    @BindView(R.id.tv_directions) TextView directionTextView;
+    @BindView(R.id.tv_ingredient) TextView ingredientTextView;
     private CompositeDisposable compositeDisposable;
+    private Recipe data;
+
+    FragmentDetails(Recipe recipe){
+        this.data = recipe;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class FragmentHome extends Fragment implements RecipeSelectedListener {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_details, container, false);
     }
 
     @Override
@@ -57,25 +57,30 @@ public class FragmentHome extends Fragment implements RecipeSelectedListener {
         initAction();
     }
 
-    private void initView(View view) {
+    private void initView(View view){
         ButterKnife.bind(this, view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-    
-    private void initAction() {
+
+    private void initAction(){
         Repository repository = AppUtil.getRepository();
-        Disposable disposable = repository.getRepositories()
+        Disposable disposable = repository.getRecipe(data.getId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSuccess, this::onError);
         compositeDisposable.add(disposable);
-
     }
 
-    private void onSuccess(RecipesRepo recipesRepo){
-        List<Recipe> recipes;
-        recipes = recipesRepo.getRecipes();
-        recyclerView.setAdapter(new HomeAdapter(recipes, this));
+
+    private void onSuccess(RecipeRepo recipeRepo){
+        Recipe recipe = recipeRepo.getRecipe();
+        recipeNameTextView.setText(recipe.getName());
+        recipeDescriptionTextView.setText(recipe.getDescription());
+        directionTextView.setOnClickListener( view -> {
+            openDirection(recipe);
+        });
+        ingredientTextView.setOnClickListener( view -> {
+            openIngredient(recipe);
+        });
     }
 
     private void onError(Throwable e){
@@ -83,15 +88,11 @@ public class FragmentHome extends Fragment implements RecipeSelectedListener {
         Toast.makeText(getContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
     }
 
+    private void openDirection(Recipe recipe){
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
-    @Override
-    public void onRecipeSelected(Recipe recipe) {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new FragmentDetails(recipe))
-                .addToBackStack(null).commit();
+    private void openIngredient(Recipe recipe){
+
     }
 }

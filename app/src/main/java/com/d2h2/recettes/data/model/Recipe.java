@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Recipe implements Serializable {
-    @SerializedName("id")
-    private int id;
+    @SerializedName("_id")
+    private String id;
     @SerializedName("name")
     private String name;
     @SerializedName("description")
@@ -27,11 +27,11 @@ public class Recipe implements Serializable {
     private int numberOfLikes;
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

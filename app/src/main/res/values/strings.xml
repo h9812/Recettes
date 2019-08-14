@@ -4,4 +4,7 @@
     <string name="title_search">Search</string>
     <string name="title_profile">Profile</string>
     <string name="title_setting">Setting</string>
+    <string name="recipe_description">Bún đậu mắm tôm là món ăn đơn giản, dân dã trong ẩm thực miền Bắc Việt Nam. ... Thành phần chính gồm có bún tươi, đậu hũ rán vàng, chả cốm, nem chua, mắm tôm pha chanh, ớt và ăn kèm với các loại rau thơm như tía tô, kinh giới, rau húng, xà lách, cà pháo...</string>
+    <string name="direction">Direction</string>
+    <string name="ingredient">Ingredient</string>
 </resources>
