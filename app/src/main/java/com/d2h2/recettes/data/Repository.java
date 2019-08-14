@@ -1,10 +1,10 @@
 package com.d2h2.recettes.data;
 
+import com.d2h2.recettes.data.Repo.CommentsRepo;
 import com.d2h2.recettes.data.Repo.IngredientRepo;
 import com.d2h2.recettes.data.Repo.IngredientsRepo;
 import com.d2h2.recettes.data.Repo.RecipeRepo;
 import com.d2h2.recettes.data.Repo.RecipesRepo;
-import com.d2h2.recettes.data.model.Ingredient;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
@@ -22,4 +22,7 @@ public interface Repository {
 
     @GET("api/ingredients/{id}")
     Single<IngredientRepo> getIngredient(@Path("id") String id);
+
+    @GET("api/comments")
+    Single<CommentsRepo> getComments();
 }
