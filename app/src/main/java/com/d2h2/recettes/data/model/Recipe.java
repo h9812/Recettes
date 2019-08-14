@@ -15,7 +15,7 @@ public class Recipe implements Serializable {
     private String description;
     @SerializedName("ingredientIds")
     private String[] ingredientIds;
-    @SerializedName("amounts")
+    @SerializedName("ingredientAmounts")
     private List<String> amounts;
     @SerializedName("directions")
     private List<String> directions;

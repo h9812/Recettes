@@ -89,10 +89,12 @@ public class FragmentDetails extends Fragment {
     }
 
     private void openDirection(Recipe recipe){
-
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new FragmentDirections(recipe))
+                .addToBackStack(null).commit();
     }
 
     private void openIngredient(Recipe recipe){
-
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new FragmentIngredients(recipe))
+                .addToBackStack(null).commit();
     }
 }
