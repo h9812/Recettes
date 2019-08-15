@@ -1,8 +1,11 @@
 package com.d2h2.recettes.ui.adapter;
 
+import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.content.ContentValues.TAG;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
@@ -44,28 +49,43 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         return data.size();
     }
 
-    static final class HomeViewHolder extends RecyclerView.ViewHolder{
+    static final class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.tv_recipe_name)
         TextView recipeNameTextView;
         @BindView(R.id.tv_recipe_description) TextView recipeDescriptionTextView;
+        @BindView(R.id.tv_like)
+        TextView likeTextView;
+        @BindView(R.id.tv_comment) TextView commentTextView;
 
         private Recipe recipe;
+        private RecipeSelectedListener recipeSelectedListener;
 
         HomeViewHolder(@NonNull View itemView, final RecipeSelectedListener recipeSelectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(v -> {
-                if(recipe != null) {
-                    recipeSelectedListener.onRecipeSelected(recipe);
-                }
-            });
+            this.recipeSelectedListener = recipeSelectedListener;
+            likeTextView.setOnClickListener(this);
         }
 
         void bind(Recipe recipe){
             this.recipe = recipe;
             recipeNameTextView.setText(recipe.getName());
             recipeDescriptionTextView.setText(recipe.getDescription());
+            String like = "like(" + String.valueOf(recipe.getNumberOfLikes()) + ")";
+            likeTextView.setText(like);
+            String comment = "comemnt(" + String.valueOf(2) + ")";
+            commentTextView.setText(comment);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(recipe != null) {
+                if(view.getId() == likeTextView.getId()){
+                    recipeSelectedListener.onLikeSelected(recipe, likeTextView);
+                } else
+                    recipeSelectedListener.onRecipeSelected(recipe);
+            }
         }
     }
 }
