@@ -47,15 +47,7 @@ public class FragmentHome extends Fragment{
             startActivity(intent);
         }
     };
-    private final RecipeSelectedListener mRecipesClickListener = new RecipeSelectedListener() {
-        @Override
-        public void onRecipeSelected(Recipe recipe) {
-            Toast.makeText(getContext(), "on Click", Toast.LENGTH_SHORT).show();
-            FragmentDetailRecipe fragmentDetailRecipe = new FragmentDetailRecipe();
-            recyclerView.setVisibility(View.GONE);
-            getChildFragmentManager().beginTransaction().replace(R.id.list_recipes, fragmentDetailRecipe).commit();
-        }
-    };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,9 +86,6 @@ public class FragmentHome extends Fragment{
     private void onSuccess(RecipesRepo recipesRepo){
         List<Recipe> recipes = new ArrayList<>();
         recipes = recipesRepo.getRecipes();
-        HomeAdapter homeAdapter = new HomeAdapter(recipes);
-        homeAdapter.onClickRecipes(mRecipesClickListener);
-        recyclerView.setAdapter(homeAdapter);
     }
 
     private void onError(Throwable e){
