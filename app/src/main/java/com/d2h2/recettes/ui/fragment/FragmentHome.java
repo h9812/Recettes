@@ -36,7 +36,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class FragmentHome extends Fragment{
+public class FragmentHome extends Fragment implements  RecipeSelectedListener{
 
     @BindView(R.id.rv_recipes)
     RecyclerView recyclerView;
@@ -72,6 +72,7 @@ public class FragmentHome extends Fragment{
     private void initView(View view) {
         ButterKnife.bind(this, view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mImgAdd = view.findViewById(R.id.ic_add);
     }
     
     private void initAction() {
@@ -81,7 +82,6 @@ public class FragmentHome extends Fragment{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSuccess, this::onError);
         compositeDisposable.add(disposable);
-
         mImgAdd.setOnClickListener(mImgAddClickListener);
     }
 

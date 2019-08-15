@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:background="@color/colorBackGroundDefault"
+
             android:text="@string/like"
             tools:ignore="PrivateResource" />
         <Button
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:background="@color/colorBackGroundDefault"
+
             android:text="@string/comment"
             tools:ignore="PrivateResource" />
     </LinearLayout>

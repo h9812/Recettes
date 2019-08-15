@@ -5,9 +5,12 @@ import com.d2h2.recettes.data.Repo.IngredientRepo;
 import com.d2h2.recettes.data.Repo.IngredientsRepo;
 import com.d2h2.recettes.data.Repo.RecipeRepo;
 import com.d2h2.recettes.data.Repo.RecipesRepo;
+import com.d2h2.recettes.data.model.Ingredient;
 
 import io.reactivex.Single;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface Repository {
@@ -25,4 +28,8 @@ public interface Repository {
 
     @GET("api/search/comments/{recipe_id}")
     Single<CommentsRepo> getComments(@Path("recipe_id") String id);
+
+//    @POST("api/search/recipes")
+//    Single<IngredientsRepo> getIngredients(@Body IngredientRequest ingredientRequest);
+
 }

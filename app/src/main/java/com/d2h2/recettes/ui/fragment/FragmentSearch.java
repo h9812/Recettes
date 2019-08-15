@@ -39,7 +39,7 @@ public class FragmentSearch extends Fragment {
         mTxtSearchResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentSearchresources fragmentSearchresources = new FragmentSearchresources();
+                FragmentSearchResources fragmentSearchresources = new FragmentSearchResources();
                 getChildFragmentManager().beginTransaction().replace(R.id.fragment_search, fragmentSearchresources).commit();
             }
         });
