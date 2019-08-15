@@ -17,12 +17,12 @@ public interface Repository {
     @GET("api/recipes/{id}")
     Single<RecipeRepo> getRecipe(@Path("id") String id);
 
-    @GET("api/ingredients")
-    Single<IngredientsRepo> getIngredientList();
+    @GET("api/search/ingredients/{recipe_id}")
+    Single<IngredientsRepo> getIngredientList(@Path("recipe_id") String id);
 
     @GET("api/ingredients/{id}")
     Single<IngredientRepo> getIngredient(@Path("id") String id);
 
-    @GET("api/comments")
-    Single<CommentsRepo> getComments();
+    @GET("api/search/comments/{recipe_id}")
+    Single<CommentsRepo> getComments(@Path("recipe_id") String id);
 }

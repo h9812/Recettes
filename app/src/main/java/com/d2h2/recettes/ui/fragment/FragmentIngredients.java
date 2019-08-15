@@ -69,7 +69,7 @@ public class FragmentIngredients extends Fragment {
 
     private void initAction() {
         Repository repository = AppUtil.getRepository();
-        Disposable disposable = repository.getIngredientList()
+        Disposable disposable = repository.getIngredientList(data.getId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSuccess, this::onError);

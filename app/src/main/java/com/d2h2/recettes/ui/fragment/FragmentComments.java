@@ -76,7 +76,7 @@ public class FragmentComments extends Fragment {
 
     private void initAction(){
         Repository repository = AppUtil.getRepository();
-        Disposable disposable = repository.getComments()
+        Disposable disposable = repository.getComments(data.getId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSuccess, this::onError);
