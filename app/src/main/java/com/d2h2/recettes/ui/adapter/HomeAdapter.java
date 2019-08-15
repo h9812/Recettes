@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
-    private RecipeSelectedListener recipeSelectedListener;
+    private RecipeSelectedListener mRecipeSelectedListener;
     private final List<Recipe> data;
 
     public HomeAdapter(List<Recipe> data){
@@ -30,7 +30,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     @Override
     public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item, parent, false);
-        return new HomeViewHolder(view, recipeSelectedListener);
+        return new HomeViewHolder(view, mRecipeSelectedListener);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(v -> {
-                if(recipe != null) {
+                if(recipe != null && recipeSelectedListener != null) {
                     recipeSelectedListener.onRecipeSelected(recipe);
                 }
             });
@@ -66,5 +66,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             recipeNameTextView.setText(recipe.getName());
             recipeDescriptionTextView.setText(recipe.getDescription());
         }
+    }
+    public void onClickRecipes(RecipeSelectedListener recipeSelectedListener){
+        mRecipeSelectedListener = recipeSelectedListener;
     }
 }

@@ -25,19 +25,25 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     FragmentHome fragmentHome = new FragmentHome();
+//                    getSupportFragmentManager().beginTransaction().addToBackStack(null);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragmentHome).commit();
+
+
                     return true;
                 case R.id.navigation_search:
                     FragmentSearch fragmentSearch = new FragmentSearch();
+//                    getSupportFragmentManager().beginTransaction().addToBackStack(null);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragmentSearch).commit();
                     return true;
                 case R.id.navigation_profile:
                     FragmentProfile fragmentProfile = new FragmentProfile();
+//                    getSupportFragmentManager().beginTransaction().addToBackStack(null);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragmentProfile).commit();
 
                     return true;
                 case R.id.navigation_setting:
                     FragmentSetting fragmentSetting = new FragmentSetting();
+//                    getSupportFragmentManager().beginTransaction().addToBackStack(null);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragmentSetting).commit();
 
                     return true;
