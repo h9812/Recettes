@@ -29,43 +29,23 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
     @NonNull
     @Override
-    public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item, parent, false);
-        return new HomeViewHolder(view, recipeSelectedListener);
+    public HomeAdapter.HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
-        holder.bind(data.get(position));
+    public void onBindViewHolder(@NonNull HomeAdapter.HomeViewHolder holder, int position) {
+
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return 0;
     }
 
-    static final class HomeViewHolder extends RecyclerView.ViewHolder{
-
-        @BindView(R.id.tv_recipe_name)
-        TextView recipeNameTextView;
-        @BindView(R.id.tv_recipe_description) TextView recipeDescriptionTextView;
-
-        private Recipe recipe;
-
-        HomeViewHolder(@NonNull View itemView, final RecipeSelectedListener recipeSelectedListener) {
+    public class HomeViewHolder extends RecyclerView.ViewHolder {
+        public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(v -> {
-                if(recipe != null) {
-                    recipeSelectedListener.onRecipeSelected(recipe);
-                }
-            });
-        }
-
-        void bind(Recipe recipe){
-            this.recipe = recipe;
-            recipeNameTextView.setText(recipe.getName());
-            recipeDescriptionTextView.setText(recipe.getDescription());
         }
     }
 }

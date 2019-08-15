@@ -13,6 +13,8 @@ import com.d2h2.recettes.R;
 
 public class FragmentSearch extends Fragment {
     private TextView mTxtSearch;
+    private TextView mTxtSearchResources;
+    private TextView mTxtSearchName;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -28,9 +30,25 @@ public class FragmentSearch extends Fragment {
 
     private void initView(View view) {
         mTxtSearch = view.findViewById(R.id.txt_search);
+        mTxtSearchResources = view.findViewById(R.id.txt_search_resources);
+        mTxtSearchName = view.findViewById(R.id.txt_search_name);
     }
 
     private void initAction() {
         mTxtSearch.setText(R.string.title_search);
+        mTxtSearchResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentSearchresources fragmentSearchresources = new FragmentSearchresources();
+                getChildFragmentManager().beginTransaction().replace(R.id.fragment_search, fragmentSearchresources).commit();
+            }
+        });
+        mTxtSearchName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentSearchName fragmentSearchName = new FragmentSearchName();
+                getChildFragmentManager().beginTransaction().replace(R.id.fragment_search, fragmentSearchName).commit();
+            }
+        });
     }
 }
