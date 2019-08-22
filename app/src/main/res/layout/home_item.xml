@@ -38,18 +38,18 @@
         android:layout_marginTop="4dp">
         <Button
             android:layout_width="1dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:background="@color/cardview_light_background"
+            android:background="@color/backGroundDefaultColor"
             android:text="@string/like"
             tools:ignore="PrivateResource" />
         <Button
             android:layout_width="1dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:background="@color/cardview_light_background"
+            android:background="@color/backGroundDefaultColor"
             android:text="@string/comment"
             tools:ignore="PrivateResource" />
     </LinearLayout>

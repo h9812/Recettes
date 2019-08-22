@@ -21,7 +21,6 @@ import com.d2h2.recettes.data.Repository;
 import com.d2h2.recettes.data.model.Comment;
 import com.d2h2.recettes.data.model.Recipe;
 import com.d2h2.recettes.ui.adapter.CommentAdapter;
-import com.d2h2.recettes.ui.adapter.HomeAdapter;
 import com.d2h2.recettes.util.AppUtil;
 
 import java.util.List;
@@ -76,22 +75,32 @@ public class FragmentComments extends Fragment {
 
     private void initAction(){
         Repository repository = AppUtil.getRepository();
-        Disposable disposable = repository.getComments()
+        Disposable disposable = repository.getComments(data.getId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSuccess, this::onError);
         compositeDisposable.add(disposable);
-
+        commentButton.setOnClickListener(view -> {
+            sendComment();
+        });
     }
 
     private void onSuccess(CommentsRepo commentsRepo){
         List<Comment> comments = commentsRepo.getComments();
         recyclerView.setAdapter(new CommentAdapter(comments));
-
     }
 
     private void onError(Throwable e){
         Log.d("dinh", "onError: " + e);
         Toast.makeText(getContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
+    }
+
+    private void sendComment(){
+        if(commentEditText.getText().toString().equals("")){
+            Toast.makeText(getContext(), "Ban chua nhap comment:", Toast.LENGTH_SHORT).show();
+        }
+        else{
+
+        }
     }
 }

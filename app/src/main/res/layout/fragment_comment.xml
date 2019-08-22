@@ -27,7 +27,7 @@
         <Button
             android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:background="@color/cardview_light_background"
+            android:background="@color/backGroundDefaultColor"
             android:layout_weight="3"/>
         <Button
             android:id="@+id/btn_comment"

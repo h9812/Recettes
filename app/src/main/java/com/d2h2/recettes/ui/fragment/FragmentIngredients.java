@@ -14,11 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.d2h2.recettes.R;
 import com.d2h2.recettes.data.Repo.IngredientsRepo;
-import com.d2h2.recettes.data.Repo.RecipeRepo;
 import com.d2h2.recettes.data.Repository;
 import com.d2h2.recettes.data.model.Ingredient;
 import com.d2h2.recettes.data.model.Recipe;
-import com.d2h2.recettes.ui.adapter.DirectionsAdapter;
 import com.d2h2.recettes.ui.adapter.IngredientsAdapter;
 import com.d2h2.recettes.util.AppUtil;
 
@@ -69,7 +67,7 @@ public class FragmentIngredients extends Fragment {
 
     private void initAction() {
         Repository repository = AppUtil.getRepository();
-        Disposable disposable = repository.getIngredientList()
+        Disposable disposable = repository.getIngredientList(data.getId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSuccess, this::onError);

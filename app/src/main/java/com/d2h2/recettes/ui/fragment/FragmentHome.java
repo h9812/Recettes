@@ -1,6 +1,5 @@
 package com.d2h2.recettes.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,8 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +20,6 @@ import com.d2h2.recettes.ui.fragment.listener.RecipeSelectedListener;
 import com.d2h2.recettes.data.model.Recipe;
 import com.d2h2.recettes.util.AppUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
