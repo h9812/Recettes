@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+
+import static android.content.ContentValues.TAG;
 
 public class FragmentHome extends Fragment implements RecipeSelectedListener {
 
@@ -89,5 +92,20 @@ public class FragmentHome extends Fragment implements RecipeSelectedListener {
     public void onRecipeSelected(Recipe recipe) {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new FragmentDetails(recipe))
                 .addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onLikeSelected(Recipe recipe, TextView view) {
+        Repository repository = AppUtil.getRepository();
+        Disposable disposable = repository.upLike(recipe.getId(), recipe.getNumberOfLikes() + 1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe( recipeRepo -> {
+                    Log.d(TAG, "onLikeSelected: up like");
+                    view.setTextColor(this.getResources().getColor(R.color.colorPrimary));
+                }, throwable -> {
+                    Log.d(TAG, "onLikeSelected: error " + throwable.getMessage() );
+                });
+        compositeDisposable.add(disposable);
     }
 }

@@ -32,6 +32,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.content.ContentValues.TAG;
+
 public class FragmentComments extends Fragment {
 
     @BindView(R.id.tv_username)
@@ -43,6 +45,8 @@ public class FragmentComments extends Fragment {
     @BindView(R.id.rv_comments)
     RecyclerView recyclerView;
     private Recipe data;
+    private Repository repository = AppUtil.getRepository();
+
 
     private CompositeDisposable compositeDisposable;
 
@@ -68,26 +72,26 @@ public class FragmentComments extends Fragment {
         initAction();
     }
 
-    private void initView(View view){
-        ButterKnife.bind(this, view);
+    private void initView(View iview){
+        ButterKnife.bind(this, iview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-
-    private void initAction(){
-        Repository repository = AppUtil.getRepository();
-        Disposable disposable = repository.getComments(data.getId())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onSuccess, this::onError);
-        compositeDisposable.add(disposable);
         commentButton.setOnClickListener(view -> {
             sendComment();
         });
     }
 
+    private void initAction(){
+        Disposable disposable = repository.getComments(data.getId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onSuccess, this::onError);
+        compositeDisposable.add(disposable);
+    }
+
     private void onSuccess(CommentsRepo commentsRepo){
         List<Comment> comments = commentsRepo.getComments();
         recyclerView.setAdapter(new CommentAdapter(comments));
+
     }
 
     private void onError(Throwable e){
@@ -96,11 +100,22 @@ public class FragmentComments extends Fragment {
     }
 
     private void sendComment(){
-        if(commentEditText.getText().toString().equals("")){
-            Toast.makeText(getContext(), "Ban chua nhap comment:", Toast.LENGTH_SHORT).show();
+        String content = commentEditText.getText().toString();
+        if(content.equals("")){
+            Toast.makeText(getContext(), "Ban chua comment", Toast.LENGTH_SHORT).show();
         }
         else{
-
+            repository.postComment(content, "1", data.getId())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(commentRepo -> {
+                                Log.d(TAG, "sendComment: " + commentRepo.getComment().getContent());
+                                commentEditText.getText().clear();
+                                commentEditText.clearFocus();
+                    },
+                            throwable -> {
+                                Log.d(TAG, "sendComment: " + throwable.getMessage() );
+                    });
         }
     }
 }
