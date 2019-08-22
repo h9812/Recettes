@@ -60,7 +60,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         }
 
         void bind(Comment comment){
-            userTextView.setText(comment.getId());
+            userTextView.setText(comment.getOwner());
             contentTextView.setText(comment.getContent());
         }
     }

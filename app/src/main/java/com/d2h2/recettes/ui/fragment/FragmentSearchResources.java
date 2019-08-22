@@ -24,9 +24,9 @@ public class FragmentSearchResources extends Fragment {
     private CompositeDisposable compositeDisposable;
     private Ingredient mIngredient;
 
-    FragmentSearchResources(Ingredient ingredient){
-        mIngredient = ingredient;
-    }
+//    FragmentSearchResources(Ingredient ingredient){
+//        mIngredient = ingredient;
+//    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -42,12 +42,15 @@ public class FragmentSearchResources extends Fragment {
     }
 
     private void initActions() {
-        Repository repository = AppUtil.getRepository();
-        Disposable disposable = repository.getComments(Ingredient.getId())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onSuccess, this::onError);
-        compositeDisposable.add(disposable);
+//        Repository repository = AppUtil.getRepository();
+//        Disposable disposable = repository.getComments(Ingredient.getId())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(this::onSuccess, this::onError);
+//        compositeDisposable.add(disposable);
+    }
+
+    private void onError(Throwable throwable) {
     }
 
     private void onSuccess(CommentsRepo commentsRepo) {

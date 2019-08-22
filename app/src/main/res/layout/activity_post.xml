@@ -36,7 +36,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -86,12 +86,44 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/edt_post_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="Công thức nấu ăn?"
+            android:hint="Món ăn"
+            android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/edt_post_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Mô tả"
+            android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/edt_step1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Step 1"
+            android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/edt_step2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Step 2"
+            android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/edt_step3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Step 3"
             android:inputType="textMultiLine" />
 
     </LinearLayout>

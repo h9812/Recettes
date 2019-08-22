@@ -1,5 +1,6 @@
 package com.d2h2.recettes.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.d2h2.recettes.data.Repo.CommentsRepo;
 import com.d2h2.recettes.data.Repository;
 import com.d2h2.recettes.data.model.Comment;
 import com.d2h2.recettes.data.model.Recipe;
+import com.d2h2.recettes.data.model.User;
 import com.d2h2.recettes.ui.adapter.CommentAdapter;
 import com.d2h2.recettes.ui.adapter.HomeAdapter;
 import com.d2h2.recettes.util.AppUtil;
@@ -33,6 +35,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.facebook.share.internal.DeviceShareDialogFragment.TAG;
+
 public class FragmentComments extends Fragment {
 
     @BindView(R.id.tv_username)
@@ -44,8 +48,10 @@ public class FragmentComments extends Fragment {
     @BindView(R.id.rv_comments)
     RecyclerView recyclerView;
     private Recipe data;
+    private Button mBtnComment;
 
     private CompositeDisposable compositeDisposable;
+    private Repository repository = AppUtil.getRepository();
 
     FragmentComments(Recipe recipe){
         this.data = recipe;
@@ -72,16 +78,26 @@ public class FragmentComments extends Fragment {
     private void initView(View view){
         ButterKnife.bind(this, view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
+        mBtnComment = view.findViewById(R.id.btn_comment);
 
-    private void initAction(){
+    }
+    private void getData(){
         Repository repository = AppUtil.getRepository();
         Disposable disposable = repository.getComments(data.getId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onSuccess, this::onError);
         compositeDisposable.add(disposable);
-
+    }
+    private void initAction(){
+        getData();
+        mBtnComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendComment();
+                getData();
+            }
+        });
     }
 
     private void onSuccess(CommentsRepo commentsRepo){
@@ -93,5 +109,26 @@ public class FragmentComments extends Fragment {
     private void onError(Throwable e){
         Log.d("dinh", "onError: " + e);
         Toast.makeText(getContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
+    }
+    @SuppressLint("LongLogTag")
+    private void sendComment(){
+        User user = new User(getActivity());
+        String content = commentEditText.getText().toString();
+        if(content.equals("")){
+            Toast.makeText(getContext(), "Ban chua comment", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            repository.postComment(content, user.getId(), data.getId())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(commentRepo -> {
+                                Log.d(TAG, "sendComment: " + commentRepo.getComment().getContent());
+                                commentEditText.getText().clear();
+                                commentEditText.clearFocus();
+                            },
+                            throwable -> {
+                                Log.d(TAG, "sendComment: " + throwable.getMessage() );
+                            });
+        }
     }
 }

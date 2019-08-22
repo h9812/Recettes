@@ -1,10 +1,12 @@
 package com.d2h2.recettes.ui.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.PermissionRequest;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +20,10 @@ import com.d2h2.recettes.R;
 import com.d2h2.recettes.data.Repository;
 import com.d2h2.recettes.data.model.User;
 import com.d2h2.recettes.util.AppUtil;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +38,9 @@ import static com.facebook.share.internal.DeviceShareDialogFragment.TAG;
 public class PostActivity extends AppCompatActivity {
     private CompositeDisposable compositeDisposable;
     private Repository repository = AppUtil.getRepository();
+    private int REQUEST_GALLERY_IMAGE = 100;
     private ImageView mImgAvatar;
+    private ImageView mPickImg;
     private TextView mTxtName;
     private TextView mTxtGenre;
     private TextView mTxtTest;
@@ -73,6 +81,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mPickImg = findViewById(R.id.img_add);
         mImgAvatar = findViewById(R.id.img_avatar);
         mTxtName = findViewById(R.id.txt_name);
         mTxtGenre = findViewById(R.id.txt_genre);
@@ -95,6 +104,12 @@ public class PostActivity extends AppCompatActivity {
         mImgAvatar.setOnClickListener(mImgAvatarClickListener);
         mImgBack.setOnClickListener(mImgBackClickListener);
         mBtnPost.setOnClickListener(mBtnPostClickListener);
+        mPickImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                onGallerySelected();
+            }
+        });
     }
     @SuppressLint("LongLogTag")
     private void sendPost(){
@@ -126,4 +141,30 @@ public class PostActivity extends AppCompatActivity {
                             });
         }
     }
+//    protected void onGallerySelected(){
+//        Dexter.withActivity(this)
+//                .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
+//                .withListener(new MultiplePermissionsListener() {
+//                    @Override
+//                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+//                        if (report.areAllPermissionsGranted()) {
+//                            Intent intent = new Intent();
+//                            intent.setType("image/*");
+//                            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+//                            intent.setAction(Intent.ACTION_GET_CONTENT);
+//                            startActivityForResult(Intent.createChooser(intent,"Select Picture"), REQUEST_GALLERY_IMAGE);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onPermissionRationaleShouldBeShown(List<com.karumi.dexter.listener.PermissionRequest> permissions, PermissionToken token) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+//                        token.continuePermissionRequest();
+//                    }
+//                }).check();
+//    }
 }

@@ -4,38 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/connect">
+    android:background="@mipmap/login">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="210dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="' Con đường ngắn nhất đến trái tim một người là đi qua dạ dày '"
+        android:text="Recettes"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FC0C0C"
-        android:textSize="36sp"
-        android:textStyle="bold|italic"
+        android:textColor="#0AA530"
+        android:textSize="60sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginLeft="280dp"
-        android:layout_marginTop="16dp"
-        android:text="Mr Do"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FC0C0C"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fb_login"
@@ -52,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         facebook:com_facebook_login_text="Đăng nhập" />
 
     <com.google.android.gms.common.SignInButton
