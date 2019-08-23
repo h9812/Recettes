@@ -8,12 +8,15 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.d2h2.recettes.R;
+import com.d2h2.recettes.data.Repository;
 import com.d2h2.recettes.data.model.User;
+import com.d2h2.recettes.util.AppUtil;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -31,10 +34,16 @@ import com.google.android.gms.tasks.Task;
 
 import org.json.JSONObject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.facebook.share.internal.DeviceShareDialogFragment.TAG;
+
 public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private LoginButton fb_login;
     private SignInButton gg_login;
+    private Repository repository = AppUtil.getRepository();
 //    private static final int MY_NOTIFICATION_ID = 12345;
 //    private static final int MY_REQUEST_CODE = 100;
     private String name, email, url_avatar, id;
@@ -130,9 +139,10 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("url", url_avatar);
                         editor.putString("id",id);
                         editor.apply();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        LoginActivity.this.startActivity(intent);
-                        finish();
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        LoginActivity.this.startActivity(intent);
+//                        finish();
+                        sendUser();
 
                     }
                 });
@@ -163,9 +173,10 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("url", url_avatar);
             editor.putString("id",id);
             editor.apply();
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            LoginActivity.this.startActivity(intent);
-            finish();
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            LoginActivity.this.startActivity(intent);
+//            finish();
+            sendUser();
         }
     }
 
@@ -185,4 +196,18 @@ public class LoginActivity extends AppCompatActivity {
 //    public void onBackPressed() {
 //        finish();
 //    }
+private void sendUser(){
+    User user = new User(this);
+        repository.postUsers(user.getId(),user.getName() ,user.getEmail() ,user.getUrl_avatar())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(commentRepo -> {
+//                                Log.d(TAG, "sendPost: " + commentRepo.getComment().getContent());
+                            Intent intent = new Intent(this, MainActivity.class);
+                            startActivity(intent);
+                        },
+                        throwable -> {
+                            Log.d("Do", "sendUsers: " + throwable.getMessage() );
+                        });
+    }
 }
