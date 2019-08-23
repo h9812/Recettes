@@ -12,13 +12,6 @@
         android:id="@+id/tv_direction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        style="@style/body2"
         tools:text="Bun dau mam tom"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:background="@color/colorPrimary" />
 </LinearLayout>

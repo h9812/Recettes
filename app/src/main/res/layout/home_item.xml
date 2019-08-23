@@ -9,49 +9,88 @@
     android:paddingEnd="16dp"
     android:paddingBottom="10dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imv_avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:id="@+id/tv_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            style="@style/title2"
+            android:clickable="true"
+            android:gravity="start"
+            android:focusable="true"
+            tools:text="Tran Van Dinh"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_recipe_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        style="@style/title1"
+        android:textColor="@color/colorBlue2"
         tools:text="Bun dau mam tom" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:background="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/tv_recipe_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        style="@style/body2"
         tools:text="Bun dau mam tom" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="4dp">
-        <Button
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-
-            android:text="@string/like"
-            tools:ignore="PrivateResource" />
-        <Button
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-
-            android:text="@string/comment"
-            tools:ignore="PrivateResource" />
+        android:id="@+id/images_container"
+        android:layout_width="600dp"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:focusable="true"
+            style="@style/body2"
+            android:text="@string/like" />
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:focusable="true"
+            style="@style/body2"
+            android:text="@string/comment" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        tools:text="2 gio truoc" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorBlack" />
 
 </LinearLayout>

@@ -64,7 +64,7 @@ public class FragmentIngredients extends Fragment {
     private void initView(View view) {
         ButterKnife.bind(this, view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
     private void initAction() {

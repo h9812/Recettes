@@ -78,6 +78,7 @@ public class FragmentComments extends Fragment {
     private void initView(View view){
         ButterKnife.bind(this, view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setNestedScrollingEnabled(false);
         mBtnComment = view.findViewById(R.id.btn_comment);
 
     }

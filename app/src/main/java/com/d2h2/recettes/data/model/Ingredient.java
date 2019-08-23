@@ -2,25 +2,17 @@ package com.d2h2.recettes.data.model;
 
 import java.io.Serializable;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Ingredient implements Serializable {
+    @Getter
+    @Setter
     private String id;
+
+    @Getter
+    @Setter
     private String name;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public String toString() {

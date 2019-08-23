@@ -7,6 +7,4 @@ import java.util.List;
 public class IngredientRequest {
     @SerializedName("ingredientIds")
     public List<String> ingredientIds[];
-//    @SerializedName("ingredientIds")
-//    public List<String> ingredientIds[];
 }

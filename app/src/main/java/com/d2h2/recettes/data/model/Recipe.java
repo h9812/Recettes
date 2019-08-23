@@ -6,98 +6,59 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Recipe implements Serializable {
+    @Getter
+    @Setter
     @SerializedName("_id")
     private String id;
+
+    @Getter
+    @Setter
     @SerializedName("name")
     private String name;
+
+    @Getter
+    @Setter
     @SerializedName("description")
     private String description;
+
+    @Getter
+    @Setter
     @SerializedName("ingredientIds")
     private String[] ingredientIds;
+
+    @Getter
+    @Setter
     @SerializedName("ingredientAmounts")
     private List<String> amounts;
+
+    @Getter
+    @Setter
     @SerializedName("directions")
     private List<String> directions;
+
+    @Getter
+    @Setter
     @SerializedName("tagIds")
     private String[] tagIds;
+
+    @Getter
+    @Setter
     @SerializedName("ownerId")
     private String ownerId;
+
+    @Getter
+    @Setter
     @SerializedName("numberOfLikes")
     private int numberOfLikes;
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String[] getIngredientIds() {
-        return ingredientIds;
-    }
-
-    public void setIngredientIds(String[] ingredientIds) {
-        this.ingredientIds = ingredientIds;
-    }
-
-    public String[] getTagIds() {
-        return tagIds;
-    }
-
-    public void setTagIds(String[] tagIds) {
-        this.tagIds = tagIds;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public List<String> getAmounts() {
-        return amounts;
-    }
-
-    public void setAmounts(List<String> amounts) {
-        this.amounts = amounts;
-    }
-
-    public List<String> getDirections() {
-        return directions;
-    }
-
-    public void setDirections(List<String> directions) {
-        this.directions = directions;
-    }
-
-    public int getNumberOfLikes() {
-        return numberOfLikes;
-    }
-
-    public void setNumberOfLikes(int numberOfLikes) {
-        this.numberOfLikes = numberOfLikes;
-    }
+    @Getter
+    @Setter
+    @SerializedName("images")
+    private List<String> images;
 
     @Override
     public String toString() {

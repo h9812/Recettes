@@ -14,4 +14,7 @@
     <string name="ingredient">Ingredient</string>
     <string name="like">Like</string>
     <string name="comment">Comment</string>
+    <string name="title">Title:</string>
+    <string name="description">Description:</string>
+    <string name="image">Image</string>
 </resources>

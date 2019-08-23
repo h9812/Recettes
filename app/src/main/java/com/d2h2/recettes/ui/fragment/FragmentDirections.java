@@ -60,6 +60,8 @@ public class FragmentDirections extends Fragment {
     private void initView(View view) {
         ButterKnife.bind(this, view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setNestedScrollingEnabled(false);
+
 
     }
 
